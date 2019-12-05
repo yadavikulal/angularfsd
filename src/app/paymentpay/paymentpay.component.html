@@ -1,0 +1,56 @@
+<div
+    style="text-align: center; background-image: url(https://www.esker.com/sites/default/files/group_images/payment_bknd_0.jpg)">
+    <div *ngIf="error">
+        <div class="alert alert-danger">
+            <strong style="color: black; font-size: 20px;">{{error}}</strong>
+        </div>
+    </div>
+
+
+
+    <div class="signup-form " style="width: 600px ;display:inline-block">
+
+        <form ngNoForm action="https://test.payu.in/_payment" name="payuform" method="POST" target="payment_popup"
+            onsubmit="window.open('about:blank','payment_popup','width=900,height=500');" class="shadow-lg bg-black"
+            style="background-color: rgba(223, 223, 223, 0.602)">
+            <h2 style="-webkit-text-fill-color: black; font-family: 'Times New Roman', Times, serif;font-weight: bold;"> Payment Form</h2>
+            <div class="form-group">
+                <label for="productInfo" style="float: left; -webkit-text-fill-color: black; font-weight: bold;"> Name:</label>
+                <input type="text" class="form-control" id="productInfo" name="productinfo"
+                    >
+            </div>
+            <div class="form-group">
+                <label for="firstname" style="float: left; -webkit-text-fill-color: black; font-weight: bold;" >Address:</label>
+                <input type="text" class="form-control" id="firstname" name="firstname"
+                    >
+            </div>
+            <div class="form-group">
+                <label for="email" style="float: left; -webkit-text-fill-color: black; font-weight: bold;">Email:</label>
+                <input type="email" class="form-control" id="email" name="email" >
+            </div>
+            <div class="form-group">
+                <label for="email" style="float: left; -webkit-text-fill-color: black; font-weight: bold;">Phone:</label>
+                <input type="text" class="form-control" maxlength="10" 
+                    pattern="^[7-9][0-9]{9}$" id="phone" name="phone" >
+            </div>
+            <div class="form-group">
+                <label for="amount" style="float: left; -webkit-text-fill-color: black; font-weight: bold;">Amount:</label>
+                <input type="text" class="form-control" id="amount" name="amount"  readonly>
+            </div>
+            <textarea name="surl" id="surl" ng-model="surl" rows="2" cols="2" hidden
+                [(ngModel)]="payuform.surl"></textarea>
+            <textarea name="furl" id="furl" ng-model="furl" rows="2" cols="2" hidden
+                [(ngModel)]="payuform.furl"></textarea>
+            <textarea name="key" id="key" ng-model="key" rows="2" cols="2" hidden [(ngModel)]="payuform.key"></textarea>
+            <textarea name="hash" id="hash" ng-model="hash" rows="2" cols="2" hidden
+                [(ngModel)]="payuform.hash"></textarea>
+            <textarea name="txnid" id="txnid" ng-model="txnid" rows="2" cols="2" hidden
+                [(ngModel)]="payuform.txnid"></textarea>
+            <textarea name="service_provider" id="service_provider" rows="2" cols="2" hidden></textarea>
+            <button *ngIf="disablePaymentButton" type="button" class="btn btn-success"
+                (click)="confirmPayment(); placeOrder()">Confirm</button>
+            <button *ngIf="!disablePaymentButton" type="submit" class="btn btn-danger">Submit</button>
+        </form>
+    </div>
+</div>
+            
